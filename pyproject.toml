@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medtextcn-plus"
+version = "1.2.0"
+description = "轻量级中文医疗文本智能分析引擎 Pro 版 - Chinese Medical Text Intelligence Engine"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "MedTextCN-Plus Contributors"}
+]
+keywords = ["medical", "nlp", "chinese", "ner", "pii", "healthcare", "text-analysis"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = []
+
+[project.optional-dependencies]
+enhanced = [
+    "jieba>=0.42.1",
+    "numpy>=1.21.0",
+]
+server = [
+    "flask>=2.3.0",
+]
+tui = [
+    "rich>=13.0.0",
+    "textual>=0.40.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+]
+all = [
+    "medtextcn-plus[enhanced]",
+    "medtextcn-plus[server]",
+    "medtextcn-plus[tui]",
+]
+
+[project.scripts]
+medtext = "medtextcn_plus.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/gitstq/MedTextCN-Plus"
+Repository = "https://github.com/gitstq/MedTextCN-Plus"
+Issues = "https://github.com/gitstq/MedTextCN-Plus/issues"
+
+[tool.setuptools.packages.find]
+include = ["medtextcn_plus*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
